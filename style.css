@@ -1,0 +1,53 @@
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: Georgia
+}
+
+.container {
+	max-width: 720px;
+	margin: 0 auto;	
+}
+
+h1, h2, h3, h4, h5, h6, .impact {
+	font-family: Impact, Verdana, Arial;
+}
+
+.impact {
+	font-size: 1.2em;
+}
+
+img {
+	width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px;
+	padding: 10px;
+}
+
+p {
+	margin: 14px 20px 0;
+	line-height: 1.4em;
+}
+
+h1 {
+	background-color: #bada55;
+}
+
+h2 {
+	background-color: #F781D8;
+}
+
+h3 {
+	background-color: #2ECCFA;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
