@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>draw</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Pedro Ha">
+	<!-- Date: 2011-08-10 -->
+</head>
+<body>
+	<canvas id="canvas" width="2000" height="2000"></canvas>
+
+	<script>
+
+    	var canvas = document.getElementById("canvas");
+    	var c = canvas.getContext("2d");
+
+        c.fillStyle = "#eee";
+        c.fillRect(0, 0, 1000, 1000);
+        
+        c.lineWidth = 70;
+        c.fillStyle = "#a7f";
+        c.strokeStyle = "#f7a";
+        c.lineCap = "round";
+        c.lineJoin = "round";
+
+        var brush = {
+            strokeStart : function(x, y) {
+                c.beginPath();
+                c.moveTo(x-1, y-1); // depends on size of cursor!
+                c.lineTo(x, y);
+                c.stroke();
+            },
+            stroke : function (x, y) {
+                c.lineTo(x, y);
+                c.stroke();
+                c.moveTo(x, y);           
+            },
+            strokeEnd : function () {
+            }
+        };
+        
+	</script>
+	
+	<script src="canvas_listener.js"></script>
+    
+
+</body>
+</html>

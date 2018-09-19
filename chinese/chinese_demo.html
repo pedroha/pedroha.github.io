@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>chinese demo</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Pedro Ha">
+	<!-- Date: 2011-08-10 -->
+
+	<script src="setup.js" type="text/javascript"></script>
+	<script src="svg_parser.js" type="text/javascript"></script>
+	
+</head>
+
+<body>
+
+	<canvas id="canvas" width="2000" height="2000"></canvas>
+
+	<script>
+	
+		var canvas = document.getElementById("canvas");
+		var c = canvas.getContext("2d");http://www.robertpenner.com/easing_terms_of_use.html
+		
+		c.save();
+
+	    c.fillStyle = "#aaa";
+	    c.fillRect(0, 0, 1000, 1000);
+
+		//c.translate(0, 800); // ascent /// Just the "ascent" needs to be translated
+        //c.scale(1, -1);
+        
+		c.translate(0, 600); // ascent /// Just the "ascent" needs to be translated
+        c.scale(0.75, -0.75);
+
+        var path = "M567 593H763L808 638L870 572H563Q561 564 559 556T554 540Q549 522 545 510T538 490H733L773 533L836 469H630Q632 462 635 454T643 436Q651 417 660 403T678 377H818L863 428L935 357H690Q718 322 766 280Q860 197 947 173Q926 169 899 156Q866 143 855 127Q786 171 715 263Q699 284  684 307T652 357H482Q465 324 447 296T411 245Q362 183 298 143Q244 110 247 118Q248 123 284 156Q315 184 342 217T393 290Q405 310 414 326T428 357H288V376H439Q442 383 445 391T452 408Q459 427 464 442T473 469H351V490H482Q486 502 488 509T492 521Q496 534 499 546T506 572Q504 574 412 573Q389 573 365 573Q342 573 319 572V593H512Q519 622 524 658Q526 674 527 689T528 718L620 682L589 661Q585 646 578 627Q567 592 567 593ZM540 205V341L620 314L587 291V205H640L669 234L684 249L745 185H587V133V84H739L788 133L853 64H587L591 -101L532 -104Q532 -106 533 -95T536 -60Q538 -36 538 -18T540 15Q540 16 540 22Q540 29 539 40Q539 64 540 63V64H315V84H540V150V185H455H394V205H540ZM315 666L276 651Q271 637 265 621T251 587Q237 553 227 530T211 495L263 470L234 454V229V39Q235 26 235 13Q235 0 236 -14Q237 -42 237 -60Q237 -79 237 -87L177 -93Q180 -78 183 27Q184 79 186 129V173V424Q181 408 172 390T149 348Q111 283 70 239Q30 196 30 203Q29 209 58 253Q80 288 105 344T158 480Q217 647 221 725L315 666ZM601 469H529Q524 455 518 439T505 405Q501 397 498 390T493 376H642Q638 383 632 397T617 431Q612 441 609 450T601 469Z";
+		
+        var canvasDrawer = new JF.DrawingSvgCanvasExecutor(c);
+	    var parser = new JF.SvgPathParser();
+	    
+	    parser.parse(path, canvasDrawer);
+	    
+	    c.fillStyle = "white";
+	    c.lineWidth = 20;
+	    c.lineCap = "round";
+	    c.lineJoin = "round";
+	    c.stroke();
+	    c.fill();
+	    
+	    c.restore(); // To start clipping against shape!
+
+	    c.clip();
+	    
+        var brush = {
+            strokeStart : function(x, y) {
+                info( ">>> strokeStart: " + x + ", " + y );
+                c.beginPath();
+                c.moveTo(x-1, y-1); // depends on size of cursor!
+                c.lineTo(x, y);
+                c.stroke();
+            },
+            stroke : function (x, y) {
+                info( ">>> stroke: " + x + ", " + y );
+                c.lineTo(x, y);
+                c.stroke();
+                c.moveTo(x, y);           
+            },
+            strokeEnd : function () {
+                info( ">>> strokeEnd");
+            }
+        };
+	    
+	    // Automatic painting, need callback to execute "after" our "automatic" painting is over
+
+        c.fillStyle = "#a7f";
+        c.lineWidth = 70;
+        c.lineCap = "round";
+        c.lineJoin = "round";
+        c.strokeStyle = "#a7f";
+
+        
+        // Manual painting
+        c.strokeStyle = "#a7f";
+    
+	</script>
+
+	<script src="canvas_listener.js" type="text/javascript"></script>
+	
+</body>
+</html>
